@@ -1,0 +1,7 @@
+http.port=8081
+tcp.dest.addr=127.0.0.1
+tcp.dest.port=1234
+login=adm
+password=123
+
+spring.thymeleaf.enabled=true
