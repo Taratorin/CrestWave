@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@PropertySource("classpath:/config.property")
 @Slf4j
 public class CrestWaveApplication {
     public static void main(String[] args) {
