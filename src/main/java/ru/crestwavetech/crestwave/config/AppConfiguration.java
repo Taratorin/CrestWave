@@ -1,4 +1,4 @@
-package ru.crestwavetech.crestwave;
+package ru.crestwavetech.crestwave.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;

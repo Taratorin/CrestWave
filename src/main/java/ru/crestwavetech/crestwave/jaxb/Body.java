@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EnvelopeBody {
+public class Body {
     @XmlElement(name = "sendPayment", namespace = "wsapi:Payment")
     private SendPayment sendPayment;
 }

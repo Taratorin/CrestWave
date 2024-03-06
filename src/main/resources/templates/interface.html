@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Web Interface to send XML</title>
 </head>
 <body>
-$END$
+<form th:method="POST" th:action="@{/web/submit}">
+    <label for="xml">type xml here:</label>
+    <textarea name="xml" rows="10" cols="50"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>

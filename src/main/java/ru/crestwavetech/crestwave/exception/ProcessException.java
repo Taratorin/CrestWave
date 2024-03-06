@@ -1,7 +1,7 @@
 package ru.crestwavetech.crestwave.exception;
 
-public class BadRequestException extends RuntimeException {
-    public BadRequestException(String message) {
+public class ProcessException extends RuntimeException {
+    public ProcessException(String message) {
         super(message);
     }
 }

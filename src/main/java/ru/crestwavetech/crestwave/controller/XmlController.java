@@ -4,8 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.crestwavetech.crestwave.model.ConverterResult;
 import ru.crestwavetech.crestwave.service.ConvertService;
 
 
@@ -13,18 +14,20 @@ import ru.crestwavetech.crestwave.service.ConvertService;
 @RequestMapping()
 @RequiredArgsConstructor
 @Slf4j
-public class Controller {
+public class XmlController {
     private final ConvertService service;
 
-    @GetMapping("web/interface")
+    @GetMapping("/web/interface")
     public String showInterface() {
         return "interface";
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/web/submit")
     @ResponseStatus(HttpStatus.OK)
-    public ConverterResult processXml(@RequestBody String xml, HttpServletRequest request) {
+    public String processXml(@RequestParam("xml") String xml, HttpServletRequest request, Model model) {
         log.info("Получен пакет XML по {} ", request.getRequestURI());
-        return service.convertXml(xml);
+        String result = service.convertXml(xml);
+        model.addAttribute("result", result);
+        return "result";
     }
 }

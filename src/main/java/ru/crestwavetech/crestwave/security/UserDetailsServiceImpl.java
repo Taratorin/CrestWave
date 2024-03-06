@@ -1,22 +1,26 @@
-package ru.practicum.security;
+package ru.crestwavetech.crestwave.security;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.practicum.exception.NotFoundException;
-import ru.practicum.model.User;
-import ru.practicum.repository.UserRepository;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final UserRepository userRepository;
+    @Value("${login}")
+    private String login;
+    @Value("${password}")
+    private String password;
 
     @Override
-    public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new NotFoundException("Пользователь не найден"));
-        return UserDetailsImpl.build(user);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (login.equals(username)) {
+            return new SecurityUser(login, password);
+        } else {
+            throw new UsernameNotFoundException("User not found");
+        }
     }
 }

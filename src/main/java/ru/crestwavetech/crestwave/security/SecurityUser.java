@@ -1,35 +1,21 @@
 package ru.crestwavetech.crestwave.security;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.practicum.model.User;
 
 import java.util.Collection;
-import java.util.List;
 
 @AllArgsConstructor
-public class UserDetailsImpl implements UserDetails {
-    private final Long id;
-    private final String name;
-    private final String email;
+@Data
+public class SecurityUser implements UserDetails {
+    private final String username;
     private final String password;
-    public Collection<? extends GrantedAuthority> authorities;
-
-    public static UserDetailsImpl build(User user) {
-        List<GrantedAuthority> authorityList = List.of(new SimpleGrantedAuthority(user.getRole().name()));
-        return new UserDetailsImpl(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getPassword(),
-                authorityList);
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
     @Override
@@ -39,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
