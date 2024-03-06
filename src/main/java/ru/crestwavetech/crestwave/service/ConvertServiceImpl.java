@@ -46,7 +46,7 @@ public class ConvertServiceImpl implements ConvertService {
                 }
                 log.info("Data to send in socket in HEX: " + hexData);
                 out.write(dataToSend);
-                log.info("Data successfully send in socket");
+                log.info("Data successfully sent in socket");
             }
         } catch (IOException e) {
             throw new ProcessException("Error while sending data in socket");
